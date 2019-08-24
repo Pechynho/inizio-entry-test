@@ -3,8 +3,8 @@
     <channel>
         <title>{{ application_name }} | RSS</title>
         <description>This is generating RSS sample.</description>
-        <pubDate>{{ 'now'|date('r', timezone='GMT') }}</pubDate>
-        <lastBuildDate>{{ (feeds|first).lastUpdate|default('now')|date('r', timezone='GMT') }}</lastBuildDate>
+        <pubDate>{{ 'now'|date('c') }}</pubDate>
+        <lastBuildDate>{{ (feeds|first).lastUpdate|default('now')|date('c') }}</lastBuildDate>
         <link>{{ url("homepage") }}</link>
         <language>{{ app.request.locale }}</language>
         {% for feed in feeds %}
@@ -13,7 +13,7 @@
                 <description>Sample description of {{ feed.address }}.</description>
                 <link>{{ url('app_sakila_address_show', {'id': feed.id}) }}</link>
                 <guid>{{ url('app_sakila_address_show', {'id': feed.id}) }}</guid>
-                <pubDate>{{ feed.lastUpdate|date(format='r', timezone='GMT') }}</pubDate>
+                <pubDate>{{ feed.lastUpdate|date('c') }}</pubDate>
             </item>
         {% endfor %}
     </channel>
