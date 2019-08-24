@@ -26,6 +26,5 @@ yarn-error.log
 ###< symfony/webpack-encore-bundle ###
 webpack.config.php_storm.js
 .idea/
-.env
 .env.prod
 .env.dev
