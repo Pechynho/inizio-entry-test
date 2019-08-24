@@ -2,16 +2,24 @@
 
 {% import "macros/_utils.html.twig" as utils %}
 
+{% block title %}{{ address.address }}{% endblock %}
+
 {% block body %}
     <div class="container">
         {% set modal_id = random_html_element_id('modal') %}
         <div class="card">
             <div class="card-header">
-                <button class="btn btn-primary btn-sm pull-right" data-tooltip="tooltip"
-                        data-toggle="modal" data-target="#{{ modal_id }}"
-                        title="Odeslat na e-mail">
-                    <i class="fa fa-envelope"></i>
-                </button>
+                <div class="pull-right">
+                    <button class="btn btn-primary btn-sm" data-tooltip="tooltip"
+                            data-toggle="modal" data-target="#{{ modal_id }}"
+                            title="Odeslat na e-mail">
+                        <i class="fa fa-envelope"></i>
+                    </button>
+                    <a class="btn btn-secondary btn-sm" href="{{ path('homepage') }}"
+                       data-toggle="tooltip" title="Domovská stránka">
+                        <i class="fa fa-home"></i>
+                    </a>
+                </div>
                 <h1 class="h5">{{ address.address }}</h1>
             </div>
             <div class="card-body">
