@@ -20,7 +20,7 @@
 {% if hide_navbar|default(false) == false %}
     {{ render(controller("App\\Controller\\BaseController:navbar")) }}
 {% endif %}
-{% if app.session.flashbag.peekAll is not empty %}
+{% if app.request.previousSession and app.session.flashbag.peekAll is not empty %}
     <div id="alerts_container" class="container">
         {% for type, messages in app.flashes %}
             {% for message in messages %}

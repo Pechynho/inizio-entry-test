@@ -41,6 +41,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
+                        {{ form_errors(form) }}
                         {{ form_row(form.email) }}
                     </div>
                     <div class="modal-footer">
