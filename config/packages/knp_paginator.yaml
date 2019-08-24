@@ -1,0 +1,12 @@
+knp_paginator:
+  page_range: 5
+  default_options:
+    page_name: "%app.paginator.page_name%"
+    sort_field_name: "%app.paginator.sort_field_name%"
+    sort_direction_name: "%app.paginator.sort_direction_name%"
+    distinct: true
+    filter_field_name: "%app.paginator.filter_field_name%"
+    filter_value_name: "%app.paginator.filter_value_name%"
+  template:
+    sortable: 'pagination/_sortable_link.html.twig'
+    pagination: "pagination/_pagination.html.twig"

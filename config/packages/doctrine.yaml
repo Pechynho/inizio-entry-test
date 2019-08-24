@@ -1,0 +1,47 @@
+doctrine:
+    dbal:
+        # configure these for your database server
+        default_connection: default
+        connections:
+            default:
+                driver: 'pdo_mysql'
+                server_version: '5.7'
+                charset: utf8mb4
+                default_table_options:
+                    charset: utf8mb4
+                    collate: utf8mb4_unicode_ci
+                url: '%env(resolve:DATABASE_URL)%'
+            sakila:
+                driver: 'pdo_mysql'
+                server_version: '5.7'
+                charset: utf8mb4
+                default_table_options:
+                    charset: utf8mb4
+                    collate: utf8mb4_unicode_ci
+                url: '%env(resolve:DATABASE_SAKILA_URL)%'
+
+    orm:
+        default_entity_manager: default
+        auto_generate_proxy_classes: true
+        entity_managers:
+            default:
+                connection: default
+                naming_strategy: doctrine.orm.naming_strategy.underscore
+                auto_mapping: true
+                mappings:
+                    Main:
+                        is_bundle: false
+                        type: annotation
+                        dir: '%kernel.project_dir%/src/Entity/Main'
+                        prefix: 'App\Entity\Main'
+                        alias: Main
+            sakila:
+                connection: sakila
+                naming_strategy: doctrine.orm.naming_strategy.underscore
+                mappings:
+                    Sakila:
+                        is_bundle: false
+                        type: annotation
+                        dir: '%kernel.project_dir%/src/Entity/Sakila'
+                        prefix: 'App\Entity\Sakila'
+                        alias: Sakila

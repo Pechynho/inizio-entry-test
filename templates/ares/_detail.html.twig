@@ -1,0 +1,49 @@
+{% import "macros/_utils.html.twig" as utils %}
+
+<div class="container">
+    <h2 class="h6">Základní informace</h2>
+    {% if company.name is not empty %}
+        {{ utils.form_static_row("Název subjektu", company.name) }}
+    {% endif %}
+    {% if company.ico is not empty %}
+        {{ utils.form_static_row("IČO", company.ico) }}
+    {% endif %}
+    {% if company.creationDate is not empty %}
+        {{ utils.form_static_row("Datum vzniku", company.creationDate|date("d.m.Y")) }}
+    {% endif %}
+    {{ utils.form_static_row("Vyhledáno", company.searched|date("d.m.Y H:i:s")) }}
+    <h2 class="h6 mt-2">Adresa</h2>
+    {% if company.address.stateCode %}
+        {{ utils.form_static_row("Kód státu", company.address.stateCode) }}
+    {% endif %}
+    {% if company.address.state %}
+        {{ utils.form_static_row("Stát", company.address.state) }}
+    {% endif %}
+    {% if company.address.region %}
+        {{ utils.form_static_row("Kraj", company.address.region) }}
+    {% endif %}
+    {% if company.address.township %}
+        {{ utils.form_static_row("Okres", company.address.township) }}
+    {% endif %}
+    {% if company.address.municipality %}
+        {{ utils.form_static_row("Obec", company.address.municipality) }}
+    {% endif %}
+    {% if company.address.district %}
+        {{ utils.form_static_row("Obvod", company.address.district) }}
+    {% endif %}
+    {% if company.address.municipalityPart %}
+        {{ utils.form_static_row("Část obce", company.address.municipalityPart) }}
+    {% endif %}
+    {% if company.address.districtPart %}
+        {{ utils.form_static_row("Městská část", company.address.districtPart) }}
+    {% endif %}
+    {% if company.address.street %}
+        {{ utils.form_static_row("Ulice", company.address.street) }}
+    {% endif %}
+    {% if company.address.houseNumber %}
+        {{ utils.form_static_row("Domovní číslo", company.address.houseNumber) }}
+    {% endif %}
+    {% if company.address.orientationNumber %}
+        {{ utils.form_static_row("Orientační číslo", company.address.orientationNumber) }}
+    {% endif %}
+</div>

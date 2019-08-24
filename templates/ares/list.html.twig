@@ -1,0 +1,75 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Výpis{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1 class="h4">Výpis</h1>
+        {% if companies_total_count > 0 %}
+            <p>Zde se nachází výpis vyhledaných subjektů. Filtrovat ve vyhledaných subjektech můžete pomocí formuláře
+                níže.
+                Pokud si přejete vyhledat nový subjekt a přidat ho do zobrazené tabulky,
+                tak navštivte záložku <a href="{{ path('app_ares_company_search') }}">Vyhledávání</a>.</p>
+            <div class="card">
+                <div class="card-header">
+                    Filtrování
+                </div>
+               <div class="card-body">
+                   {{ form_start(form) }}
+                   {{ form_row(form.name) }}
+                   <div class="row">
+                       <div class="col-md-6">
+                           {{ form_row(form.searched.left_datetime) }}
+                       </div>
+                       <div class="col-md-6">
+                           {{ form_row(form.searched.right_datetime) }}
+                       </div>
+                   </div>
+                   <div class="form-group mb-0">
+                       <button class="btn btn-primary min-width" type="submit">
+                           <i class="fa fa-filter"></i> Filtrovat
+                       </button>
+                       <a class="btn btn-secondary min-width" href="{{ path('app_ares_companies_list') }}">
+                           <i class="fa fa-undo"></i> Vymazat filtr
+                       </a>
+                   </div>
+                   {{ form_end(form) }}
+               </div>
+            </div>
+        {% endif %}
+        {% if companies is not empty %}
+            <table class="table table-bordered companies-table mt-4">
+                <thead>
+                <tr>
+                    <th>{{ knp_pagination_sortable(companies, "Název subjektu", "company.name") }}</th>
+                    <th class="text-center">{{ knp_pagination_sortable(companies, "Vyhledáno", "company.searched") }}</th>
+                    <th class="text-center">Akce</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for company in companies %}
+                    <tr>
+                        <td>{{ company.name }}</td>
+                        <td class="text-center">{{ company.searched|date("d.m.Y H:i") }}</td>
+                        <td class="text-center">
+                            <button class="btn btn-secondary btn-sm company-detail" data-toggle="tooltip" title="Detail"
+                                    data-company-id="{{ company.id }}">
+                                <i class="fa fa-eye"></i>
+                            </button>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            {{ knp_pagination_render(companies) }}
+        {% elseif companies_total_count > 0 %}
+            <p class="mt-4">
+                Zadaným parametrům filtrování neoodpovídá žádný subjekt.
+            </p>
+        {% else %}
+            <p>
+                Prozatím nebyly vyhledány žádné subjekty. Učinit tak můžete <a href="{{ path('app_ares_company_search') }}">zde</a>.
+            </p>
+        {% endif %}
+    </div>
+{% endblock %}

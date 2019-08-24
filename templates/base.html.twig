@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="{{ app.request.locale }}">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ application_name }} | {% block title %}{% endblock %}</title>
+    {% block stylesheets %}
+        {{ encore_entry_link_tags("app") }}
+    {% endblock %}
+    <link rel="icon" href="{{ asset('files/application_icon.png') }}" type="image/x-png">
+</head>
+<body>
+<div id="page_loader" class="page-loader">
+    <div class="page-loader-content">
+        <img class="page-loader-content-image" src="{{ asset('files/loading_animation.svg') }}" alt="Animace načítání">
+        <div>
+            <strong>Stránka se připravuje...</strong>
+        </div>
+    </div>
+</div>
+{% if hide_navbar|default(false) == false %}
+    {{ render(controller("App\\Controller\\BaseController:navbar")) }}
+{% endif %}
+{% if app.session.flashbag.peekAll is not empty %}
+    <div id="alerts_container" class="container">
+        {% for type, messages in app.flashes %}
+            {% for message in messages %}
+                <div class="alert alert-{{ type }} alert-dismissible fade show" role="alert">
+                    {{ message|raw }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            {% endfor %}
+        {% endfor %}
+    </div>
+{% endif %}
+{% block body %}{% endblock %}
+{% if hide_footer|default(false) == false %}
+    <footer class="footer">
+        <div class="container">
+            <span class="text-muted">© Copyright {{ application_name }} {{ "now"|date("Y") }}</span>
+        </div>
+    </footer>
+{% endif %}
+{% block javascripts %}
+    <script src="{{ asset('bundles/fosjsrouting/js/router.min.js') }}"></script>
+    <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
+    {{ encore_entry_script_tags("app") }}
+{% endblock %}
+</body>
+</html>

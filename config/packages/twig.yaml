@@ -1,0 +1,12 @@
+twig:
+    default_path: '%kernel.project_dir%/templates'
+    debug: '%kernel.debug%'
+    strict_variables: '%kernel.debug%'
+    globals:
+        application_name: "%app.application_name%"
+        paginator_possible_limits: "%app.paginator.possible_limits%"
+        paginator_sort_field_name: "%app.paginator.sort_field_name%"
+        paginator_sort_direction_name: "%app.paginator.sort_direction_name%"
+        paginator_limit_name: "%app.paginator.limit_name%"
+    form_themes:
+        - 'bootstrap_4_layout.html.twig'

@@ -1,0 +1,132 @@
+html {
+    position: relative;
+    min-height: 100%;
+}
+body {
+    /* Margin bottom by footer height */
+    margin-bottom: 80px;
+    margin-top: 80px;
+}
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    /* Set the fixed height of the footer here */
+    height: 60px;
+    line-height: 60px; /* Vertically center the text there */
+    background-color: #f5f5f5;
+}
+
+.navbar-application-icon {
+    height: 24px;
+}
+
+.page-loader {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 9999;
+    background-color: #f6f6fa;
+    text-align: center;
+    overflow: hidden;
+}
+
+.page-loader.dark {
+    background-color: #171717;
+}
+
+.page-loader.white {
+    background-color: #fff;
+}
+
+.page-loader-content {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.page-loader-content img {
+    width: 80px;
+}
+
+
+.btn.min-width {
+    min-width: 150px;
+    text-align: center !important;
+}
+
+@media (max-width: 480px) {
+    .btn.min-width {
+        min-width: 0;
+    }
+}
+
+.btn.min-width-sm {
+    min-width: 120px;
+    text-align: center !important;
+}
+
+@media (max-width: 480px) {
+    .btn.min-width-sm {
+        min-width: 0;
+    }
+}
+
+.btn.min-width-lg {
+    min-width: 170px;
+    text-align: center !important;
+}
+
+@media (max-width: 480px) {
+    .btn.min-width-lg {
+        min-width: 0;
+    }
+}
+
+.page-selector {
+    width: auto;
+    margin: 0 10px 0 5px;
+    display: inline;
+}
+
+.limit-selector {
+    width: auto;
+    margin: 0 0 0 5px;
+    display: inline;
+}
+
+.companies-table th:nth-child(2) {
+    width: 180px;
+}
+
+.companies-table th:nth-child(3) {
+    width: 75px;
+}
+
+.companies-table th, .companies-table td {
+    vertical-align: middle;
+}
+
+.loading-animation {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 9999;
+    background-color: black;
+    text-align: center;
+    overflow: hidden;
+    opacity: 0.5;
+}
+
+.loading-animation-img {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80px;
+}

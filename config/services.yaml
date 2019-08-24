@@ -1,0 +1,63 @@
+# This file is the entry point to configure your own services.
+# Files in the packages/ subdirectory configure your dependencies.
+
+# Put parameters here that don't need to change on each machine where the app is deployed
+# https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
+parameters:
+    app.ares_search_url: "http://wwwinfo.mfcr.cz/cgi-bin/ares/darv_std.cgi?ico={ico}"
+    app.locale: "cs"
+    app.application_name: "INZIO Vstupní test"
+    app.paginator.default_limit: 3
+    app.paginator.possible_limits: [3, 5, 10, 20, 50, 100]
+    app.paginator.page_name: "stranka"
+    app.paginator.limit_name: "pocet-zaznamu"
+    app.paginator.sort_field_name: "trideni"
+    app.paginator.sort_direction_name: "smer-trideni"
+    app.paginator.filter_field_name: "filtrovane-pole"
+    app.paginator.filter_value_name: "filtrovana-hodnota"
+    app.mailer.from: "Tým PechyCorp™"
+
+services:
+    # default configuration for services in *this* file
+    _defaults:
+        autowire: true      # Automatically injects dependencies in your services.
+        autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+
+    # makes classes in src/ available to be used as services
+    # this creates a service per class whose id is the fully-qualified class name
+    App\:
+        resource: '../src/*'
+        exclude: '../src/{DependencyInjection,Entity,Migrations,Tests,Kernel.php}'
+
+    # controllers are imported separately to make sure services can be injected
+    # as action arguments even if you don't extend any base controller class
+    App\Controller\:
+        resource: '../src/Controller'
+        tags: ['controller.service_arguments']
+
+    # add more service definitions when explicit configuration is needed
+    # please note that last definitions always *replace* previous ones
+
+    App\Service\Ares:
+        arguments:
+            $url: "%app.ares_search_url%"
+
+    App\Utils\Paginator:
+        arguments:
+            $defaultLimit:   "%app.paginator.default_limit%"
+            $possibleLimits: "%app.paginator.possible_limits%"
+            $pageParamName: "%app.paginator.page_name%"
+            $limitParamName: "%app.paginator.limit_name%"
+            $sortFieldParamName: "%app.paginator.sort_field_name%"
+            $sortDirectionParamName: "%app.paginator.sort_direction_name%"
+            $filterFieldParamName: "%app.paginator.filter_field_name%"
+            $filterValueParamName: "%app.paginator.filter_value_name%"
+
+    App\Twig\AppExtension:
+        tags:
+            - "twig.extension"
+
+    App\Service\Mailer:
+        arguments:
+            $fromEmail: "%env(MAILER_EMAIL)%"
+            $from: "%app.mailer.from%"

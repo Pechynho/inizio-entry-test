@@ -1,0 +1,56 @@
+{% extends "base.html.twig" %}
+
+{% import "macros/_utils.html.twig" as utils %}
+
+{% block body %}
+    <div class="container">
+        {% set modal_id = random_html_element_id('modal') %}
+        <div class="card">
+            <div class="card-header">
+                <button class="btn btn-primary btn-sm pull-right" data-tooltip="tooltip"
+                        data-toggle="modal" data-target="#{{ modal_id }}"
+                        title="Odeslat na e-mail">
+                    <i class="fa fa-envelope"></i>
+                </button>
+                <h1 class="h5">{{ address.address }}</h1>
+            </div>
+            <div class="card-body">
+                {{ utils.form_static_row("Adresa", address.address) }}
+                {{ utils.form_static_row("Telefonní číslo", address.phone) }}
+                {% if address.address2 is not null and address.address2 is not empty %}
+                    {{ utils.form_static_row("Adresa 2", address.address2) }}
+                {% endif %}
+                {{ utils.form_static_row("Obvod", address.district) }}
+                {{ utils.form_static_row("Město", address.city.city) }}
+                {% if address.postalCode is not null %}
+                    {{ utils.form_static_row("PSČ", address.postalCode) }}
+                {% endif %}
+                {{ utils.form_static_row("Stát", address.city.country.country) }}
+            </div>
+        </div>
+        {{ form_start(form, {attr: {id: "send_address_form"}}) }}
+        <div class="modal fade submit-modal" id="{{ modal_id }}" tabindex="-1" role="dialog"
+             aria-labelledby="{{ modal_id }}_title"
+             aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="{{ modal_id }}_title">Odeslat na e-mail</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        {{ form_row(form.email) }}
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary min-width">
+                            <i class="fa fa-mail-forward"></i> Odeslat
+                        </button>
+                    </div>
+                </div>
+            </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}

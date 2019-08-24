@@ -1,0 +1,35 @@
+<nav class="navbar fixed-top  navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand" href="{{ path('homepage') }}">
+            <img class="navbar-application-icon" src="{{ asset('files/application_icon.png') }}"
+                 alt="Application logo">
+            {{ application_name }}
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar"
+                aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbar">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link {% if request.get('_route') == "app_ares_company_search" %}active{% endif %}"
+                       href="{{ path('app_ares_company_search') }}">
+                        <i class="fa fa-search"></i> Vyhledávání
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {% if request.get('_route') == "app_ares_companies_list" %}active{% endif %}"
+                       href="{{ path('app_ares_companies_list') }}">
+                        <i class="fa fa-list"></i> Výpis
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {% if request.get('_route') == "app_sakila_rss" %}active{% endif %}"
+                       href="{{ path('app_sakila_rss') }}">
+                        <i class="fa fa-rss"></i> RSS
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

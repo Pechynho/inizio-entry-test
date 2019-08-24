@@ -1,0 +1,62 @@
+<table style="width: 100%;">
+    <tr style="height: 30px;">
+        <td style="width: 150px; vertical-align: middle;">
+            Adresa
+        </td>
+        <td style="vertical-align: middle;">
+            {{ address.address }}
+        </td>
+    </tr>
+    <tr style="height: 30px;">
+        <td style="width: 150px; vertical-align: middle;">
+            Telefonní číslo
+        </td>
+        <td style="vertical-align: middle;">
+            {{ address.phone }}
+        </td>
+    </tr>
+    {% if address.address2 is not null and address.address2 is not empty %}
+        <tr style="height: 30px;">
+            <td style="width: 150px; vertical-align: middle;">
+                Adresa2
+            </td>
+            <td style="vertical-align: middle;">
+                {{ address.address2 }}
+            </td>
+        </tr>
+    {% endif %}
+    <tr style="height: 30px;">
+        <td style="width: 150px; vertical-align: middle;">
+            Obvod
+        </td>
+        <td style="vertical-align: middle;">
+            {{ address.district }}
+        </td>
+    </tr>
+    <tr style="height: 30px;">
+        <td style="width: 150px; vertical-align: middle;">
+            Město
+        </td>
+        <td style="vertical-align: middle;">
+            {{ address.city.city }}
+        </td>
+    </tr>
+    {% if address.postalCode is not null %}
+        <tr style="height: 30px;">
+            <td style="width: 150px; vertical-align: middle;">
+                PSČ
+            </td>
+            <td style="vertical-align: middle;">
+                {{ address.postalCode }}
+            </td>
+        </tr>
+    {% endif %}
+    <tr style="height: 30px;">
+        <td style="width: 150px; vertical-align: middle;">
+            Státá
+        </td>
+        <td style="vertical-align: middle;">
+            {{ address.city.country.country }}
+        </td>
+    </tr>
+</table>

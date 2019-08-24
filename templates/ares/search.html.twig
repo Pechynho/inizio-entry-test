@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Vyhledávání{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1 class="h4">Vyhledávání</h1>
+        <p>Zde můžete vyhledat subjekty pomocí jejich IČO. K vyhledání je využita služba <a href="https://wwwinfo.mfcr.cz/ares/" target="_blank">ARES</a>. Po vyhledání dojde k uložení subjektu do
+            databáze. Všechny uložené subjekty si je možno prohlédnout i s jejich detailními informacemi v záložce <a href="{{ path('app_ares_companies_list') }}">Výpis</a>.</p>
+        {{ form_start(form, {attr: {id: "search_request_form"}}) }}
+        {{ form_row(form.ico) }}
+        <div class="form-group">
+            <button class="btn btn-primary min-width" type="submit">
+                <i class="fa fa-search"></i> Vyhledat
+            </button>
+        </div>
+        {{ form_end(form) }}
+    </div>
+{% endblock %}

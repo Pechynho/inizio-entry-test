@@ -1,0 +1,9 @@
+{% macro form_static_row(label, value) %}
+    {% set element_id = random_html_element_id() %}
+    <div class="row">
+        <label for="{{ element_id }}" class="col-sm-3 col-form-label">{{ label }}</label>
+        <div class="col-sm-9">
+            <input type="text" readonly class="form-control-plaintext" id="{{ element_id }}" value="{{ value }}">
+        </div>
+    </div>
+{% endmacro %}
