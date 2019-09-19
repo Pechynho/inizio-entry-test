@@ -42,7 +42,6 @@ class AresController extends AbstractController
 			if ($company != null)
 			{
 				$this->addFlash("info", "Subjekt byl již v minulosti vyhledán. Můžete ho nalézt ve výpisu níže.");
-
 				return $this->redirectToRoute("app_ares_companies_list");
 			}
 			try
@@ -53,13 +52,11 @@ class AresController extends AbstractController
 			{
 				$this->addFlash("danger", "Při zpracovávání dat vrácených pomocí ARES API došlo k chybě.");
 				$logger->error($exception->getMessage());
-
 				return $this->redirectToRoute("app_ares_company_search");
 			}
 			if ($company == null)
 			{
 				$this->addFlash("danger", "Subjekt se dle zadaného hodnoty nepodařilo nalézt.");
-
 				return $this->redirectToRoute("app_ares_company_search");
 			}
 			$this->addFlash("success", "Subjekt byl úspěšně vyhledán. Můžete ho nalézt ve výpisu níže.");
@@ -69,7 +66,6 @@ class AresController extends AbstractController
 
 			return $this->redirectToRoute("app_ares_companies_list");
 		}
-
 		return $this->render("ares/search.html.twig", [
 			"form" => $form->createView()
 		]);
@@ -105,7 +101,6 @@ class AresController extends AbstractController
 			"companies_total_count" => $this->getDoctrine()->getRepository(Company::class)->count([])
 		]);
 		$response->headers->setCookie($paginator->createLimitCookie());
-
 		return $response;
 	}
 

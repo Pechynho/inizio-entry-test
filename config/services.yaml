@@ -6,7 +6,7 @@
 parameters:
     app.ares_search_url: "http://wwwinfo.mfcr.cz/cgi-bin/ares/darv_std.cgi?ico={ico}"
     app.locale: "cs"
-    app.application_name: "INZIO Vstupní test"
+    app.application_name: "INIZIO Vstupní test"
     app.paginator.default_limit: 3
     app.paginator.possible_limits: [3, 5, 10, 20, 50, 100]
     app.paginator.page_name: "stranka"
